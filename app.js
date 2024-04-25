@@ -26,11 +26,11 @@ app.use(express.json({ limit: 9000000000000000 }));
 // app.use(express);
 
 //api  routes
-app.get('/api/v1/instagram-clone', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'my instagram-clone app!!!',
-    });
+app.get('/', (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: 'my instagram-clone app!!!',
+  });
 });
 app.use('/api/v1/instagram-clone/users', usersRoutes);
 app.use('/api/v1/instagram-clone/posts', postRoutes);
@@ -46,8 +46,8 @@ app.use(notFound);
 app.use(errorHandlerMiddleware);
 const port = process.env.PORT || 5000;
 const start = async () => {
-    await connectDB(process.env.MONGO_URL);
-    app.listen(port, () => console.log(`server listening at port ${port}...`));
+  await connectDB(process.env.MONGO_URL);
+  app.listen(port, () => console.log(`server listening at port ${port}...`));
 };
 
 start();
